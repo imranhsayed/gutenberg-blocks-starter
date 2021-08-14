@@ -1,6 +1,6 @@
 {
 	"apiVersion": 2,
-	"name": "create-block/test-block",
+	"name": "create-block/starter-block",
 	"version": "0.1.0",
 	"title": "Starter Block",
 	"category": "widgets",
@@ -9,8 +9,6 @@
 	"supports": {
 		"html": false
 	},
-	"textdomain": "starter-block",
-	"editorScript": "file:./build/blocks/test-block/index.js",
-	"editorStyle": "file:./build/blocks/test-block/editor.css",
-	"style": "file:./build/blocks/test-block/style-index.css"
+	"textdomain": "starter-block"
+
 }

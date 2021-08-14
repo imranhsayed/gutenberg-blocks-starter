@@ -9,12 +9,11 @@ const OptimizeCssAssetsPlugin = require( 'optimize-css-assets-webpack-plugin' );
 const cssnano = require( 'cssnano' );
 const UglifyJsPlugin = require( 'uglifyjs-webpack-plugin' );
 const CopyPlugin = require('copy-webpack-plugin'); // https://webpack.js.org/plugins/copy-webpack-plugin/
-
-const json5 = require('json5');
+const DependencyExtractionWebpackPlugin = require( '@wordpress/dependency-extraction-webpack-plugin' );
 
 
 // JS Directory path.
-const JSDir = path.resolve( __dirname, 'src/js' );
+const JSDir = path.resolve( __dirname, 'src/blocks' );
 const IMG_DIR = path.resolve( __dirname, 'src/images' );
 const FONTS_DIR = path.resolve( __dirname, 'src/fonts' );
 const BUILD_DIR = path.resolve( __dirname, 'build' );
@@ -30,7 +29,6 @@ const entry = {};
 if ( entries.length ) {
 	
 	entries.forEach( file => {
-		console.log( file );
 		const fileName = file.replace( '/index.js', '' ).replace( 'src/blocks/', '' );
 		
 		if ( fileName ) {
@@ -60,25 +58,21 @@ if ( blockJSONEntries.length ) {
 	} );
 }
 
-console.log( 'copyFilePattern', copyFilePattern );
-
 /**
  * Note: argv.mode will return 'development' or 'production'.
  */
 const plugins = ( argv ) => [
 	
 	new MiniCssExtractPlugin( {
-		filename: 'blocks/[name].css'
+		filename: 'blocks/[name]/index.css'
 	} ),
 	new CopyPlugin({
-		// patterns: [
-		// 	{
-		// 		from: './src/blocks/test-block/block.json',
-		// 		to:   './blocks/test-block/block.json',
-		// 	}
-		// ],
 		patterns: copyFilePattern
 	}),
+	new DependencyExtractionWebpackPlugin( {
+		injectPolyfill: true,
+		combineAssets: true,
+	} ),
 ];
 
 const rules = [
@@ -118,13 +112,6 @@ const rules = [
 				name: '[path][name].[ext]',
 				publicPath: '../'
 			}
-		}
-	},
-	{
-		test: /\.json5$/i,
-		type: 'json',
-		parser: {
-			parse: json5.parse,
 		}
 	}
 ];

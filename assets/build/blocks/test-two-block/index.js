@@ -59,8 +59,7 @@ var __webpack_exports__ = {};
   \********************************************/
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _block_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./block.json */ "./src/blocks/test-two-block/block.json");
-console.log( 'hello 2' );
-
+console.log('hello 2');
 
 })();
 
