@@ -71,7 +71,7 @@ const plugins = ( argv ) => [
 	}),
 	new DependencyExtractionWebpackPlugin( {
 		injectPolyfill: true,
-		combineAssets: true,
+		combineAssets: false,
 	} ),
 ];
 

@@ -1,1 +1,0 @@
-<?php return array('blocks/starter-block/index.js' => array('dependencies' => array('wp-block-editor', 'wp-blocks', 'wp-i18n', 'wp-polyfill'), 'version' => 'bc0da10b5fc83f826bace3e1b92a98ed'), 'blocks/test-two-block/index.js' => array('dependencies' => array('wp-polyfill'), 'version' => '723c74b2161a88a7cc6026ef0d4e5b1e'));
